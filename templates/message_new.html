@@ -1,0 +1,99 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+    Message detail
+{% endblock %}
+
+{% block css %}
+    <link href="{% get_static_prefix %}css/bootstrap.min.css" rel="stylesheet">
+    <link href="{% get_static_prefix %}font-awesome/css/font-awesome.css" rel="stylesheet">
+    <link href="{% get_static_prefix %}css/animate.css" rel="stylesheet">
+    <link href="{% get_static_prefix %}css/style.css" rel="stylesheet">
+
+    <link href="{% get_static_prefix %}css/plugins/iCheck/custom.css" rel="stylesheet">
+    <link href="{% get_static_prefix %}css/plugins/summernote/summernote.css" rel="stylesheet">
+    <link href="{% get_static_prefix %}css/plugins/summernote/summernote-bs3.css" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+    <div class="row wrapper border-bottom white-bg page-heading">
+        <div class="col-sm-4">
+            <h2>Forum - post view</h2>
+            <ol class="breadcrumb">
+                <li>
+                    <a href="index.html">Home</a>
+                </li>
+                <li class="active">
+                    <strong>Forum - post view</strong>
+                </li>
+            </ol>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+
+
+            <div class="wrapper wrapper-content animated fadeInRight">
+                <div class="ibox-content forum-post-container">
+                    <form method="POST" action="/sendmessage/" role="form">
+                        {% csrf_token %}
+                    <div class="forum-post-info">
+                        <div class="row">
+                            <div>
+                                sender: <input  type="text" value="{{ user.username }}" name="sender"/>
+                                reciver: <input type="text" name="receiver"/>
+                                title: <input type="text" name="title"/>
+                                content: <input type="text" name="content"/>
+                                reply_to: <input type="text" name="reply_to">
+                            </div>
+                        </div>
+                    </div>
+                         <button type="submit" class="btn btn-primary pull-right">Send</button>
+                </form>
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="chat-message-form">
+
+                                <div class="form-group">
+
+                                    <div class="summernote">
+
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+{% endblock %}
+{% block js %}
+
+    <!-- Mainly scripts -->
+    <script src="{% get_static_prefix %}js/jquery-2.1.1.js"></script>
+    <script src="{% get_static_prefix %}js/bootstrap.min.js"></script>
+    <script src="{% get_static_prefix %}js/plugins/metisMenu/jquery.metisMenu.js"></script>
+    <script src="{% get_static_prefix %}js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+
+    <!-- Custom and plugin javascript -->
+    <script src="{% get_static_prefix %}js/inspinia.js"></script>
+    <script src="{% get_static_prefix %}js/plugins/pace/pace.min.js"></script>
+    <script src="{% get_static_prefix %}js/plugins/summernote/summernote.min.js"></script>
+
+    <!-- iCheck -->
+    <script src="{% get_static_prefix %}js/plugins/iCheck/icheck.min.js"></script>
+
+    <script>
+        $(document).ready(function () {
+
+            $('.summernote').summernote();
+
+        });
+    </script>
+{% endblock %}

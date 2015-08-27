@@ -1,0 +1,78 @@
+<nav class="navbar-default navbar-static-side" role="navigation">
+    <div class="sidebar-collapse">
+        <ul class="nav" id="side-menu">
+            <li class="nav-header">
+                <div class="dropdown profile-element"> <span>
+                            <img alt="image" class="img-circle" src="img/profile_small.jpg"/>
+                             </span>
+                    <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                            <span class="clear"> <span class="block m-t-xs"> <strong class="font-bold">David
+                                Williams</strong>
+                             </span> <span class="text-muted text-xs block">Art Director <b
+                                    class="caret"></b></span> </span> </a>
+                    <ul class="dropdown-menu animated fadeInRight m-t-xs">
+                        <li><a href="profile.html">Profile</a></li>
+                        <li><a href="contacts.html">Contacts</a></li>
+                        <li><a href="mailbox.html">Mailbox</a></li>
+                        <li class="divider"></li>
+                        <li><a href="login.html">Logout</a></li>
+                    </ul>
+                </div>
+                <div class="logo-element">
+                    Net
+                </div>
+            </li>
+            {% if user.is_student %}
+                <li>
+                    <a href="/student/email/"><i class="fa fa-envelope"></i> <span class="nav-label">邮箱</span></a>
+                    <a href="/student/toadmin/"><i class="fa fa-eye"></i> <span class="nav-label">中介</span></a>
+                    <a href="/student/toprof/"><i class="fa fa-book"></i> <span class="nav-label">教授</span></a>
+                    <a href="/student/tota/"><i class="fa fa-pencil"></i> <span class="nav-label">TA</span></a>
+                    <a href="/student/toparents/"><i class="fa fa-home"></i> <span class="nav-label">家长</span></a>
+                </li>
+            {% endif %}
+
+            {% if user.is_parents %}
+                <li>
+                    <a href="css_animation.html"><i class="fa fa-eye"></i> <span class="nav-label">中介</span></a>
+                    <a href="css_animation.html"><i class="fa fa-book"></i> <span class="nav-label">教授</span></a>
+                    <a href="css_animation.html"><i class="fa fa-user"></i> <span class="nav-label">学生</span></a>
+                    <a href="css_animation.html"><i class="fa fa-file-text"></i> <span class="nav-label">学生近况</span></a>
+                </li>
+            {% endif %}
+
+            {% if user.is_TA %}
+                <li>
+                    <a href="css_animation.html"><i class="fa fa-eye"></i> <span class="nav-label">中介</span></a>
+                    <a href="css_animation.html"><i class="fa fa-book"></i> <span class="nav-label">待批作文</span></a>
+                    <a href="css_animation.html"><i class="fa fa-user"></i> <span class="nav-label">已批作文</span></a>
+                    <a href="css_animation.html"><i class="fa fa-file-text"></i> <span class="nav-label">学生</span></a>
+                </li>
+            {% endif %}
+
+            {% if user.is_admin %}
+                <li>
+                    <a href="/agent/toparents/"><i class="fa fa-eye"></i> <span class="nav-label">家长</span></a>
+                    <ul class="nav nav-second-level collapse in">
+                        <li><a href="/agent/toparents/">收件箱</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="css_animation.html"><i class="fa fa-book"></i> <span class="nav-label">学生</span></a>
+                </li>
+                <li>
+                    <a href="css_animation.html"><i class="fa fa-user"></i> <span class="nav-label">TA</span></a>
+                </li>
+                <li>
+                    <a href="css_animation.html"><i class="fa fa-file-text"></i> <span
+                            class="nav-label">待翻译邮件</span></a>
+                </li>
+                <li>
+                    <a href="css_animation.html"><i class="fa fa-file-text"></i> <span
+                            class="nav-label">学生信息管理</span></a>
+                </li>
+            {% endif %}
+        </ul>
+
+    </div>
+</nav>

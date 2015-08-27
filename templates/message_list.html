@@ -1,0 +1,120 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+Message list
+{% endblock %}
+
+{% block css %}
+    <link href="{% get_static_prefix %}css/bootstrap.min.css" rel="stylesheet">
+    <link href="{% get_static_prefix %}font-awesome/css/font-awesome.css" rel="stylesheet">
+    <link href="{% get_static_prefix %}css/animate.css" rel="stylesheet">
+    <link href="{% get_static_prefix %}css/style.css" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+            <div class="row wrapper border-bottom white-bg page-heading">
+                <div class="col-sm-4">
+                    <h2>站内信</h2>
+                    <ol class="breadcrumb">
+                        <li>
+                            <a href="/index/">Home</a>
+                        </li>
+                        <li class="active">
+                            <strong>Forum</strong>
+                        </li>
+                    </ol>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="wrapper wrapper-content animated fadeInRight">
+
+                        <div class="ibox-content m-b-sm border-bottom">
+                            <div class="p-xs">
+                                <div class="pull-left m-r-md">
+                                    <i class="fa fa-globe text-navy mid-icon"></i>
+                                </div>
+                                <h2>{{ message_category }}</h2>
+                                <span>消息会分条列出</span>
+                            </div>
+                        </div>
+
+                        <div class="ibox-content forum-container">
+
+                            <div class="forum-title">
+                                <div class="pull-right forum-desc">
+                                </div>
+                            </div>
+                            {% for message in message_list %}
+
+                            <div class="forum-item {% if not message.is_read %}active{% endif %}">
+                                <div class="row">
+                                    <div class="col-md-9">
+                                        <div class="forum-icon">
+                                            <i class="fa fa-shield"></i>
+                                        </div>
+
+                                        <a href="{{ message.id }}/" class="forum-item-title">{{ message.title }}</a>
+                                        <div class="forum-sub-title">{{ message.messages.last.content|truncatechars:20 }}</div>
+                                    </div>
+                                    <div class="col-md-1 forum-info">
+                                        <span class="views-number">
+                                            {% if message.messages.last.unread %}
+                                                unread
+                                            {% else %}
+                                                read
+                                            {% endif %}
+                                        </span>
+                                        <div>
+                                            <small>Views</small>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-1 forum-info">
+                                        <span >
+                                            {{ message.newest_reply_time|time:"H:i" }}
+                                        </span>
+                                        <div>
+                                            <small>Posts</small>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            {% endfor %}
+                        {% if page > 1 %}
+                        <div class="text-center">
+                                <div class="btn-group">
+                                    <a class="btn btn-white" href="" type="button"><i class="fa fa-chevron-left"></i></a>
+
+
+                                    <a class="btn btn-white">1</a>
+                                    <a class="btn btn-white  active">2</a>
+                                    <a class="btn btn-white">3</a>
+                                    <a class="btn btn-white">4</a>
+                                    <a class="btn btn-white">5</a>
+                                    <a class="btn btn-white">6</a>
+                                    <a class="btn btn-white">7</a>
+
+
+                                    <a class="btn btn-white" type="button"><i class="fa fa-chevron-right"></i> </a>
+                                </div>
+                            </div>
+                        {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+{% endblock %}
+{% block js %}
+
+    <!-- Mainly scripts -->
+    <script src="{% get_static_prefix %}js/jquery-2.1.1.js"></script>
+    <script src="{% get_static_prefix %}js/bootstrap.min.js"></script>
+    <script src="{% get_static_prefix %}js/plugins/metisMenu/jquery.metisMenu.js"></script>
+    <script src="{% get_static_prefix %}js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+
+    <!-- Custom and plugin javascript -->
+    <script src="{% get_static_prefix %}js/inspinia.js"></script>
+    <script src="{% get_static_prefix %}js/plugins/pace/pace.min.js"></script>
+{% endblock %}
