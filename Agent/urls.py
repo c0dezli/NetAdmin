@@ -7,7 +7,7 @@ urlpatterns = patterns(
 
     (r'^$', views.index_page_view),
 
-    (r'^tota/$', message_list_view),
+    (r'^tota/$', message_list_view,{'con_type': 2}),
     (r'^tota/new/$', compose_message_view),
     (r'^tota/(?P<conversation_id>[0-9]+)/$', message_detail_view),
 

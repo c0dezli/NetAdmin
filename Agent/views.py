@@ -4,8 +4,8 @@ from django.http import HttpResponse
 from MyMessage.models import Message
 
 
-def index_page_view(request, con_type):
-    print con_type
+def index_page_view(request):
+
     return render(request, 'index.html')
 
 def tostudent_page_view(request):
