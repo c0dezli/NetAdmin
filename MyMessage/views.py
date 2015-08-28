@@ -24,7 +24,7 @@ def message_list_view(request, con_type):
     type2 agent with TA
     type3 agent with parents
     type4 student with TA
-    type5 student with parente
+    type5 student with parents
     type6 TA with parents
     '''
     print con_type

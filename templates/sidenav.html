@@ -34,19 +34,24 @@
 
             {% if user.is_parents %}
                 <li>
-                    <a href="css_animation.html"><i class="fa fa-eye"></i> <span class="nav-label">中介</span></a>
-                    <a href="css_animation.html"><i class="fa fa-book"></i> <span class="nav-label">教授</span></a>
-                    <a href="css_animation.html"><i class="fa fa-user"></i> <span class="nav-label">学生</span></a>
-                    <a href="css_animation.html"><i class="fa fa-file-text"></i> <span class="nav-label">学生近况</span></a>
+                    <!-- to do: change label-->
+                    <a href="/parents/toadmin/"><i class="fa fa-eye"></i> <span class="nav-label">中介</span></a>
+                    <a href="/parents/toprof/"><i class="fa fa-book"></i> <span class="nav-label">教授</span></a>
+                    <a href="/parents/tostudent/"><i class="fa fa-user"></i> <span class="nav-label">学生</span></a>
+                    <!--<a href="css_animation.html"><i class="fa fa-file-text"></i> <span class="nav-label">学生近况</span></a>
+                //-->
                 </li>
             {% endif %}
 
             {% if user.is_TA %}
                 <li>
-                    <a href="css_animation.html"><i class="fa fa-eye"></i> <span class="nav-label">中介</span></a>
-                    <a href="css_animation.html"><i class="fa fa-book"></i> <span class="nav-label">待批作文</span></a>
+                    <a href="/ta/toadmin/"><i class="fa fa-eye"></i> <span class="nav-label">中介</span></a>
+                    <!--
+                    <a href="/ta/"><i class="fa fa-book"></i> <span class="nav-label">待批作文</span></a>
+
                     <a href="css_animation.html"><i class="fa fa-user"></i> <span class="nav-label">已批作文</span></a>
-                    <a href="css_animation.html"><i class="fa fa-file-text"></i> <span class="nav-label">学生</span></a>
+                    //-->
+                    <a href="/ta/tostudents/"><i class="fa fa-file-text"></i> <span class="nav-label">学生</span></a>
                 </li>
             {% endif %}
 
@@ -58,19 +63,22 @@
                     </ul>
                 </li>
                 <li>
-                    <a href="css_animation.html"><i class="fa fa-book"></i> <span class="nav-label">学生</span></a>
+                    <a href="/agent/tostudent/"><i class="fa fa-book"></i> <span class="nav-label">学生</span></a>
                 </li>
                 <li>
-                    <a href="css_animation.html"><i class="fa fa-user"></i> <span class="nav-label">TA</span></a>
+                    <a href="/agent/tota/"><i class="fa fa-user"></i> <span class="nav-label">TA</span></a>
                 </li>
+                <!--
                 <li>
                     <a href="css_animation.html"><i class="fa fa-file-text"></i> <span
                             class="nav-label">待翻译邮件</span></a>
                 </li>
+
                 <li>
                     <a href="css_animation.html"><i class="fa fa-file-text"></i> <span
                             class="nav-label">学生信息管理</span></a>
                 </li>
+                -->
             {% endif %}
         </ul>
 
