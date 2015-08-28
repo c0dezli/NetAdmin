@@ -18,30 +18,26 @@ def message_detail_view(request, conversation_id):
     # todo: the redirect url
     return render(request, 'message_detail.html', {'message_list': message_list, 'receiver': conversation.receiver})
 
-def message_list_view(request):
+def message_list_view(request, con_type):
     '''
     type1 agent with student
     type2 agent with TA
     type3 agent with parents
     type4 student with TA
-    type5 student with parents
+    type5 student with parente
     type6 TA with parents
     '''
-    try:
-        page = request.GET['page']
-        message_list = Conversation.objects.filter(Q(type=type) & Q(sender=request.user.username)
-                                                   | Q(receiver=request.user.username)).order_by('newest_reply_time')
-    except:
-        message_list = Conversation.objects.filter(Q(type=type) & Q(sender=request.user.username)
+    print con_type
+    message_list = Conversation.objects.filter(Q(type=con_type) & Q(sender=request.user.username)
                                                    | Q(receiver=request.user.username)).order_by('newest_reply_time')
 
     page = int(message_list.count()/10)
 
-    if type == 1 or type == 2 or type == 3 and not request.user.is_admin:
+    if con_type == 1 or con_type == 2 or con_type == 3 and not request.user.is_admin:
         message_category = '消息列表--中介'
-    elif type == 1 or type == 4 or type == 5 and not request.user.is_student:
+    elif con_type == 1 or con_type == 4 or con_type == 5 and not request.user.is_student:
         message_category = '消息列表--学生'
-    elif type == 2 or type == 4 or type == 6 and not request.user.is_TA:
+    elif con_type == 2 or con_type == 4 or con_type == 6 and not request.user.is_TA:
         message_category = '消息列表--TA'
     else:
         message_category = '消息列表--家长'
