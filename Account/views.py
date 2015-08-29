@@ -47,3 +47,6 @@ def RegisterView(request):
     #args.update(csrf(request))
     #args['form'] = MyRegistrationForm()
     return render(request, 'register.html', {'form': form})
+
+def ProfileView(request):
+    return render(request, 'profile.html')

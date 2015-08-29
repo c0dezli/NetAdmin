@@ -25,7 +25,7 @@ def message_detail_view(request, conversation_id):
                    'redirect_url': request.get_full_path()})
 
 def send_message_view(request):
-    '''
+    '''／
     POST: reciver, sender, content, redirect_url, (title), (reply_to)
     :param redirect_url:
     '''
