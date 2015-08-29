@@ -53,8 +53,8 @@
                           {{ message.content }}
                         </div>
                     </div>
-                        {}
                     {% endfor %}
+
                     <div class="row">
                         <div class="col-lg-12">
                             <div class="chat-message-form">
@@ -63,7 +63,7 @@
                                     reply content<input name="content" type="text">
                                     reciver:<input name="sender" type="text" value="{{ user.username }}">
                                     sender:<input name="receiver" type="text" value="{{ receiver }}">
-                                    reply-to:<input name="reply-to" type="text" value="{{ reply_to }}">
+                                    conversation-id:<input name="reply-to" type="text" value="{{ conversation_id }}">
                                     redirect-url:<input name="redirect-url" type="text" value="{{ redirect_url }}">
                                     <button type="submit" class="btn btn-primary pull-right">Send</button>
                                 </div>

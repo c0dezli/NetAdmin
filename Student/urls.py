@@ -11,7 +11,7 @@ urlpatterns = patterns(
     (r'^toadmin/new/$', compose_message_view),
     (r'^toadmin/([0-9]+)/$', message_detail_view),
 
-    (r'^tota/$', message_list_view, {'con_type':2}),
+    (r'^tota/$', message_list_view, {'con_type':4}),
     (r'^tota/new/$', compose_message_view),
     (r'^tota/([0-9]+)/$', message_detail_view),
 

@@ -28,8 +28,8 @@ def message_list_view(request, con_type):
     type6 TA with parents
     '''
     print con_type
-    message_list = Conversation.objects.filter(Q(type=con_type) & Q(sender=request.user.username)
-                                                   | Q(receiver=request.user.username)).order_by('newest_reply_time')
+    message_list = Conversation.objects.filter(Q(type=con_type) & (Q(sender=request.user.username)
+                                                   | Q(receiver=request.user.username))).order_by('newest_reply_time')
 
     page = int(message_list.count()/10)
 
@@ -58,41 +58,43 @@ def send_message_view(request, which_conversation, type):
     POST: reciver, sender, content, redirect_url, (title), (reply_to)
     :param redirect_url:
     '''
+    # user is logged in and is using POST method
     if request.user.is_authenticated() and request.method == 'POST':
-
+        # new conversation
         if which_conversation == 0:
+            # init a new conversation instance
             new_conversation = Conversation()
-
             new_conversation.title = request.POST['title']
             new_conversation.p1 = request.POST['sender']
             new_conversation.p2 = request.POST['receiver']
             new_conversation.starter = request.POST['sender']
             new_conversation.type = type
             new_conversation.save()
-
+            # init a new message instance
             new_message = Message()
-
             new_message.receiver = request.POST['receiver']
             new_message.sender = request.POST['sender']
             new_message.content = request.POST['content']
-
             new_message.save()
-
+            # add the new message to conversation
+            new_conversation.messages.add(new_message)
+            # todo: notifications
+            # return to /****/****/(conversation_id)/
             return HttpResponse('send success')
-
+        # replying a exist conversation
         else:
-
+            # init a new message instance
             new_message = Message()
             new_message.receiver = request.POST['receiver']
             new_message.sender = request.POST['sender']
             new_message.content = request.POST['content']
-
+            # save the message to DB
             new_message.save()
-
+            # get the conversation by ID, and add the new message to the conversation
             conversation = Conversation.objects.get(id=which_conversation)
             conversation.messages.add(new_message)
             # todo: notifications
-
+            # return to /****/****/(conversation_id)/
             return HttpResponse('send success')
     else:
         return HttpResponseRedirect('/index/')
