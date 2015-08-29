@@ -61,17 +61,20 @@
                                 <form method="post" action="/sendmessage/">
                                 {% csrf_token %}
                                 <div id="test-form-submit">
-                                    reply content<input name="content" type="text">
-                                    reciver:<input name="sender" type="text" value="{{ user.username }}">
-                                    sender:<input name="receiver" type="text" value="{{ receiver }}">
-                                    con_type:<input name="receiver" type="text" value="{{ con_type }}"><br>
-                                    conversation-id:<input name="conversation_id" type="text" value="{{ conversation_id }}">
-                                    redirect-url:<input name="redirect_url" type="text" value="{{ redirect_url }}">
-                                    <button type="submit" class="btn btn-primary pull-right">Send</button>
+                                    <div id="temporary">
+                                    reply content<input name="content" type="text" >
+                                    </div>
+                                    reciver:<input name="sender" type="text" value="{{ user.username }}" id="hide">
+                                    sender:<input name="receiver" type="text" value="{{ receiver }}" id="hide">
+                                    con_type:<input name="receiver" type="text" value="{{ con_type }}" id="hide"><br>
+                                    conversation-id:<input name="conversation_id" type="text" value="{{ conversation_id }}" id="hide">
+                                    redirect-url:<input name="redirect_url" type="text" value="{{ redirect_url }}" id="hide">
+
                                 </div>
                                     </form>
                                 <div class="form-group">
                                     <div class="summernote"></div>
+                                    <button id = "submit" type="submit" onclick="set_and_send()" class="btn btn-primary pull-right">Send</button>
                                 </div>
                             </div>
                         </div>
@@ -105,7 +108,14 @@
         $(document).ready(function () {
 
             $('.summernote').summernote();
+            $("#the_form").hide();
 
         });
+    </script>
+    <script>
+    function set_and_send(){
+        $(".temporary input").val($(".summernote").code());
+        $("#the_form").submit();
+    }
     </script>
 {% endblock %}
