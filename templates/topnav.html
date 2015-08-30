@@ -2,17 +2,19 @@
         <nav class="navbar navbar-static-top white-bg" role="navigation" style="margin-bottom: 0">
         <div class="navbar-header">
             <a class="navbar-minimalize minimalize-styl-2 btn btn-primary " href="#"><i class="fa fa-bars"></i> </a>
-            <form role="search" class="navbar-form-custom" action="search_results.html">
+            <!--hide the search form >
+            <!--<form role="search" class="navbar-form-custom" action="search_results.html">
                 <div class="form-group">
                     <input type="text" placeholder="Search for something..." class="form-control" name="top-search" id="top-search">
                 </div>
-            </form>
+            </form>-->
+
         </div>
             <ul class="nav navbar-top-links navbar-right">
                 <li>
-                    <span class="m-r-sm text-muted welcome-message">Welcome to INSPINIA+ Admin Theme.</span>
+                    <span class="m-r-sm text-muted welcome-message">Welcome to Net.</span>
                 </li>
-                <li class="dropdown">
+                <!--<li class="dropdown">
                     <a class="dropdown-toggle count-info" data-toggle="dropdown" href="#">
                         <i class="fa fa-envelope"></i>  <span class="label label-warning">16</span>
                     </a>
@@ -64,39 +66,41 @@
                             </div>
                         </li>
                     </ul>
-                </li>
+                </li>-->
+                {% if user.is_student %}
                 <li class="dropdown">
                     <a class="dropdown-toggle count-info" data-toggle="dropdown" href="#">
-                        <i class="fa fa-bell"></i>  <span class="label label-primary">8</span>
+                        <i class="fa fa-bell"></i>  <span class="label label-primary">{{ user.notification.new_message_from_TA|add:user.notification.new_message_from_parents|add:user.notification.new_message_from_agent }}</span>
                     </a>
                     <ul class="dropdown-menu dropdown-alerts">
                         <li>
-                            <a href="mailbox.html">
+                            <a href="/student/toparents/">
                                 <div>
-                                    <i class="fa fa-envelope fa-fw"></i> You have 16 messages
-                                    <span class="pull-right text-muted small">4 minutes ago</span>
+                                    <i class="fa fa-envelope fa-fw"></i> You have {{ user.notification.new_message_from_parents }} messages from Parents
+                                    <span class="pull-right text-muted small"></span>
                                 </div>
                             </a>
                         </li>
                         <li class="divider"></li>
                         <li>
-                            <a href="profile.html">
+                            <a href="/student/toadmin/">
                                 <div>
-                                    <i class="fa fa-twitter fa-fw"></i> 3 New Followers
-                                    <span class="pull-right text-muted small">12 minutes ago</span>
+                                    <i class="fa fa-envelope fa-fw"></i> You have {{ user.notification.new_message_from_agent }} messages from Agent
+                                    <span class="pull-right text-muted small"></span>
                                 </div>
                             </a>
                         </li>
                         <li class="divider"></li>
                         <li>
-                            <a href="grid_options.html">
+                            <a href="/student/tota/">
                                 <div>
-                                    <i class="fa fa-upload fa-fw"></i> Server Rebooted
-                                    <span class="pull-right text-muted small">4 minutes ago</span>
+                                    <i class="fa fa-envelope fa-fw"></i> You have {{ user.notification.new_message_from_TA }} messages from TA
+                                    <span class="pull-right text-muted small"></span>
                                 </div>
                             </a>
                         </li>
                         <li class="divider"></li>
+                        <!--
                         <li>
                             <div class="text-center link-block">
                                 <a href="notifications.html">
@@ -105,9 +109,130 @@
                                 </a>
                             </div>
                         </li>
+                        -->
                     </ul>
                 </li>
-
+                {% endif %}
+                {% if user.is_admin %}
+                <li class="dropdown">
+                    <a class="dropdown-toggle count-info" data-toggle="dropdown" href="#">
+                        <i class="fa fa-bell"></i>  <span class="label label-primary">{{ user.notification.new_message_from_TA|add:user.notification.new_message_from_parents|add:user.notification.new_message_from_student }}</span>
+                    </a>
+                    <ul class="dropdown-menu dropdown-alerts">
+                        <li>
+                            <a href="/admin/toparents/">
+                                <div>
+                                    <i class="fa fa-envelope fa-fw"></i> You have {{ user.notification.new_message_from_parents }} messages from Parents
+                                    <span class="pull-right text-muted small"></span>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a href="/admin/tostudents/">
+                                <div>
+                                    <i class="fa fa-envelope fa-fw"></i> You have {{ user.notification.new_message_from_student }} messages from Students
+                                    <span class="pull-right text-muted small"></span>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a href="/admin/tota/">
+                                <div>
+                                    <i class="fa fa-envelope fa-fw"></i> You have {{ user.notification.new_message_from_TA }} messages from TA
+                                    <span class="pull-right text-muted small"></span>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="divider"></li>
+                        <!--
+                        <li>
+                            <div class="text-center link-block">
+                                <a href="notifications.html">
+                                    <strong>See All Alerts</strong>
+                                    <i class="fa fa-angle-right"></i>
+                                </a>
+                            </div>
+                        </li>
+                        -->
+                    </ul>
+                </li>
+                {% endif %}
+                {% if user.is_parents %}
+                <li class="dropdown">
+                    <a class="dropdown-toggle count-info" data-toggle="dropdown" href="#">
+                        <i class="fa fa-bell"></i>  <span class="label label-primary">{{ user.notification.new_message_from_agent|add:user.notification.new_message_from_student }}</span>
+                    </a>
+                    <ul class="dropdown-menu dropdown-alerts">
+                        <li>
+                            <a href="/parents/toadmin/">
+                                <div>
+                                    <i class="fa fa-envelope fa-fw"></i> You have {{ user.notification.new_message_from_agent }} messages from Parents
+                                    <span class="pull-right text-muted small"></span>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a href="/parents/tostudents/">
+                                <div>
+                                    <i class="fa fa-envelope fa-fw"></i> You have {{ user.notification.new_message_from_student }} messages from Students
+                                    <span class="pull-right text-muted small"></span>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="divider"></li>
+                        <!--
+                        <li>
+                            <div class="text-center link-block">
+                                <a href="notifications.html">
+                                    <strong>See All Alerts</strong>
+                                    <i class="fa fa-angle-right"></i>
+                                </a>
+                            </div>
+                        </li>
+                        -->
+                    </ul>
+                </li>
+                {% endif %}
+                {% if user.is_TA %}
+                <li class="dropdown">
+                    <a class="dropdown-toggle count-info" data-toggle="dropdown" href="#">
+                        <i class="fa fa-bell"></i>  <span class="label label-primary">{{ user.notification.new_message_from_agent|add:user.notification.new_message_from_student }}</span>
+                    </a>
+                    <ul class="dropdown-menu dropdown-alerts">
+                        <li>
+                            <a href="/ta/tostudents/">
+                                <div>
+                                    <i class="fa fa-envelope fa-fw"></i> You have {{ user.notification.new_message_from_student }} messages from Students
+                                    <span class="pull-right text-muted small"></span>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a href="/ta/toadmin/">
+                                <div>
+                                    <i class="fa fa-envelope fa-fw"></i> You have {{ user.notification.new_message_from_agent }} messages from TA
+                                    <span class="pull-right text-muted small"></span>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="divider"></li>
+                        <!--
+                        <li>
+                            <div class="text-center link-block">
+                                <a href="notifications.html">
+                                    <strong>See All Alerts</strong>
+                                    <i class="fa fa-angle-right"></i>
+                                </a>
+                            </div>
+                        </li>
+                        -->
+                    </ul>
+                </li>
+                {% endif %}
                 <li>
                     <a href="/account/logout/">
                         <i class="fa fa-sign-out"></i> Log out

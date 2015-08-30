@@ -4,7 +4,7 @@ from django.contrib.auth.models import Group
 from django.contrib.auth.admin import UserAdmin
 from django.contrib.auth.forms import ReadOnlyPasswordHashField
 
-from .models import Account
+from .models import Account,Notification
 
 
 class UserCreationForm(forms.ModelForm):
@@ -81,6 +81,7 @@ class AccountAdmin(UserAdmin):
 
 # Now register the new UserAdmin...
 admin.site.register(Account, AccountAdmin)
+admin.site.register(Notification)
 # ... and, since we're not using Django's built-in permissions,
 # unregister the Group model from admin.
 admin.site.unregister(Group)

@@ -35,6 +35,15 @@ class AccountManager(BaseUserManager):
         return account
 
 
+class Notification(models.Model):
+    new_message_from_agent = models.IntegerField(null=True)
+    new_message_from_student = models.IntegerField(null=True)
+    new_message_from_parents = models.IntegerField(null=True)
+    new_message_from_TA = models.IntegerField(null=True)
+    new_essays = models.IntegerField(null=True)
+
+
+
 class Account(AbstractBaseUser):
     # todo: add avatar filed
     email = models.EmailField(unique=True)
@@ -42,7 +51,7 @@ class Account(AbstractBaseUser):
 
     avatar = models.FileField(null=True)
     phone = models.CharField(max_length=40, null=True)
-    #notification = models.ForeignKey(Notification)
+    notification = models.ForeignKey(Notification)
 
     is_admin = models.BooleanField(default=False)
     is_student = models.BooleanField(default=False)
@@ -79,9 +88,4 @@ class Account(AbstractBaseUser):
         # Simplest possible answer: All admins are staff
         return self.is_admin
 
-class Notification(models.Model):
-    new_message_from_agent = models.IntegerField(null=True)
-    new_message_from_student = models.IntegerField(null=True)
-    new_message_from_parents = models.IntegerField(null=True)
-    new_message_from_TA = models.IntegerField(null=True)
-    new_essays = models.IntegerField(null=True)
+
