@@ -32,7 +32,7 @@ class ChangeInfoFrom(forms.Form):
 
     class Meta:
         model = Account
-        fields = ('username', 'school', 'whatsup','email')
+        fields = ('username', 'school', 'whatsup')
 
     def save(self, commit=True):
         user = super(ChangeInfoFrom, self).save(commit=False)
@@ -40,7 +40,7 @@ class ChangeInfoFrom(forms.Form):
         user.username = self.cleaned_data['username']
         user.school = self.cleaned_data['school']
         user.whatsup = self.cleaned_data['whatsup']
-        
+
         if commit:
             user.save()
 
