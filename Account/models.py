@@ -51,6 +51,9 @@ class Account(AbstractBaseUser):
 
     avatar = models.FileField(null=True)
     phone = models.CharField(max_length=40, null=True)
+    school = models.CharField(max_length=40)
+    sex = models.CharField(max_length=10)
+    whatsup = models.TextField(null=True)
     notification = models.ForeignKey(Notification)
 
     is_admin = models.BooleanField(default=False)

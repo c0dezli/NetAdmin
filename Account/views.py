@@ -1,12 +1,12 @@
 # Create your views here.
-from django.shortcuts import render
+from django.shortcuts import render, render_to_response
 from django.http import HttpResponseRedirect
 
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import login as auth_login, authenticate, logout as auth_logout
-from django.core.context_processors import csrf
 
-from forms import MyRegistrationForm
+from forms import MyRegistrationForm, ChangeInfoFrom, UploadFileForm
+from .models import Account
 
 def LoginView(request):
     '''
@@ -35,7 +35,7 @@ def LogoutView(request):
 
 def RegisterView(request):
     if request.method == 'POST':
-        form = MyRegistrationForm(request.POST)     # create form object
+        form = MyRegistrationForm(data=request.POST)     # create form object
         if form.is_valid():
             form.save()
             return HttpResponseRedirect('/index/')
@@ -50,3 +50,29 @@ def RegisterView(request):
 
 def ProfileView(request):
     return render(request, 'profile.html')
+
+def ChangeInfoView(request):
+    if request.user.is_authenticated() and request.method == 'POST':
+        form = ChangeInfoFrom(data=request.POST)     # create form object
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect('/account/profile/')
+        else:
+            form = ChangeInfoFrom()
+            return HttpResponseRedirect('/account/profile/')
+
+
+#def ChangePassView(request):
+#    if request.user.is_authenticated() and request.method == 'POST':
+
+def ChangeAvatarView(request):
+    if request.method == 'POST':
+        form = UploadFileForm(request.POST, request.FILES)
+        if form.is_valid():
+            instance = Account(file_field=request.FILES['file'])
+            instance.save()
+            return HttpResponseRedirect('/account/url/')
+    else:
+        form = UploadFileForm()
+    return render_to_response('profile.html', {'form': form})
+
