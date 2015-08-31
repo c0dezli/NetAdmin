@@ -26,14 +26,16 @@
         {% include 'sidenav.html' %}
 
         <div id="page-wrapper" class="gray-bg">
+{% include 'footer.html' %}
+            {% include "topnav.html" %}
+            {% block content %}
+            {% endblock content %}
 
-        {% include "topnav.html" %}
-        {% block content %}{% endblock content %}
-        {% include 'footer.html' %}
+            {% if show_right_nav %}
+                {% include 'rightbar.html' %}
+            {% endif %}
 
-        {% if show_right_nav %}
-            {% include 'rightbar.html' %}
-        {% endif %}
+
 
         </div>
 
