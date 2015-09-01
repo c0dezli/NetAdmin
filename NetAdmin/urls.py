@@ -21,6 +21,7 @@ urlpatterns = [
     url(r'^agent/', include(admin_urls)),
     url(r'^ta/', include(ta_urls)),
 
+    url(r'newmessage/$', MyMessage_views.compose_message_view),
     url(r'^sendmessage/$', MyMessage_views.send_message_view),
 
     url(r'^admin/', include(admin.site.urls)),

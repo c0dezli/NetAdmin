@@ -36,21 +36,22 @@
 
             <div class="wrapper wrapper-content animated fadeInRight">
                 <div class="ibox-content forum-post-container">
-                    <form method="POST" action="/sendmessage/" role="form">
-                        {% csrf_token %}
-                    <div class="forum-post-info">
-                        <div class="row">
-                            <div>
-                                sender: <input  type="text" value="{{ user.username }}" name="sender"/>
-                                reciver: <input type="text" name="receiver"/>
-                                title: <input type="text" name="title"/>
-                                content: <input type="text" name="content"/>
-                                reply_to: <input type="text" name="reply_to">
-                            </div>
-                        </div>
-                    </div>
-                         <button type="submit" class="btn btn-primary pull-right">Send</button>
-                </form>
+                    <form method="post" id="the_form" action='/sendmessage/'>
+                                {% csrf_token %}
+                            <input type="text" name="title" placeholder="标题" class="form-control"><br>
+
+                                    <div id="hide">
+                                    <div class = "temporary">
+                                        reply content<input name="content" type="text" >
+                                    </div>
+                                        <input name="sender" type="text" value="{{ user.username }}">
+                                        <input name="receiver" type="text" value="{{ receiver }}">
+                                        <input name="con_type" type="text" value="{{ con_type }}" ><br>
+                                        <input name="conversation_id" type="text" value="{{ conversation_id }}">
+                                        <input name="redirect_url" type="text" value="{{ redirect_url }}">
+                                    </div>
+                                </form>
+
                     <div class="row">
                         <div class="col-lg-12">
                             <div class="chat-message-form">
@@ -92,8 +93,23 @@
     <script>
         $(document).ready(function () {
 
-            $('.summernote').summernote();
+
+            $(".summernote").summernote();
+
+            $("#hide").hide();
+
+            send_Text = $(".summernote").code();
+            $("#submit").click(function(){$(".temporary input").val(send_Text)},false);
+
 
         });
+
+        cleanText = $(".summernote").code();
+        function set_and_send(){
+            $(".temporary input").val($(".summernote").code());
+            $( "#the_form" ).submit();
+        };
+
     </script>
+
 {% endblock %}

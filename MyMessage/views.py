@@ -25,7 +25,7 @@ def message_detail_view(request, conversation_id):
                    'redirect_url': request.get_full_path()})
 
 def send_message_view(request):
-    '''／
+    '''
     POST: reciver, sender, content, redirect_url, (title), (reply_to)
     :param redirect_url:
     '''
@@ -53,11 +53,11 @@ def send_message_view(request):
             new_conversation.messages.add(new_message)
             # todo: notifications
             if new_conversation.type == 1 or new_conversation.type == 2 or new_conversation.type == 3:
-                Account.objects.get(user_name=new_message.receiver).notification.new_message_from_agent += 1;
+                Account.objects.get(username=new_message.receiver).notification.new_message_from_agent += 1;
             elif new_conversation.type == 4 or new_conversation.type == 5:
-                Account.objects.get(user_name=new_message.receiver).notification.new_message_from_student += 1;
+                Account.objects.get(username=new_message.receiver).notification.new_message_from_student += 1;
             elif new_conversation.type == 6:
-                Account.objects.get(user_name=new_message.receiver).notification.new_message_from_TA += 1;
+                Account.objects.get(username=new_message.receiver).notification.new_message_from_TA += 1;
             # to_be_notified_user = Account.objects.filter(Q(username=new_message.receiver))[0]
             # return to /****/****/(conversation_id)/
             return HttpResponseRedirect(request.POST['redirect_url'])
@@ -77,11 +77,11 @@ def send_message_view(request):
             # todo: notifications
             con_type = conversation.type
             if con_type == 1 or con_type == 2 or con_type == 3:
-                Account.objects.get(user_name=new_message.receiver).notification.new_message_from_agent += 1;
+                Account.objects.get(username=new_message.receiver).notification.new_message_from_agent += 1;
             if con_type == 3 or con_type == 4:
-                Account.objects.get(user_name=new_message.receiver).notification.new_message_from_student += 1;
+                Account.objects.get(username=new_message.receiver).notification.new_message_from_student += 1;
             if con_type == 6:
-                Account.objects.get(user_name=new_message.receiver).notification.new_message_from_TA += 1;
+                Account.objects.get(username=new_message.receiver).notification.new_message_from_TA += 1;
             # return to /****/****/(conversation_id)/
             return HttpResponseRedirect(request.POST['redirect_url'])
     else:
