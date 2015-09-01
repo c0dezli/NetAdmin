@@ -22,29 +22,29 @@
     {% if user.is_student %}
     <div class="wrapper wrapper-content">
         <div class="row">
-            <div class="col-md-2">
+            <div class="col-md-4">
                 <div class="ibox float-e-margins">
                     <div class="ibox-title">
                         <span class="label label-success pull-right">Student</span>
-                        <h5> </h5>
+                        <h5>Identity </h5>
                     </div>
                     <div class="ibox-content">
-                        <h1 class="no-margins">{{ user.user_name }}</h1>
+                        <h1 class="no-margins">{{ user.username }}</h1>
                         <div class="stat-percent font-bold text-success">10% <i class="fa fa-bolt"></i></div>
                         <small>Top</small>
                     </div>
                 </div>
             </div>
-            <div class="col-md-2">
+            <div class="col-md-4">
                 <div class="ibox float-e-margins">
                     <div class="ibox-title">
-                        <span class="label label-info pull-right">Annual</span>
-                        <h5>Orders</h5>
+                        <span class="label label-info pull-right">Monthly</span>
+                        <h5>TODOs</h5>
                     </div>
                     <div class="ibox-content">
-                        <h1 class="no-margins">80,800</h1>
+                        <h1 class="no-margins">20</h1>
                         <div class="stat-percent font-bold text-info">20% <i class="fa fa-level-up"></i></div>
-                        <small>New orders</small>
+                        <small>New TODOs</small>
                     </div>
                 </div>
             </div>
@@ -59,11 +59,11 @@
 
                         <div class="row">
                             <div class="col-md-6">
-                                <h1 class="no-margins">$ 406,420</h1>
-                                <div class="font-bold text-navy">44% <i class="fa fa-level-up"></i> <small>Rapid pace</small></div>
+                                <h1 class="no-margins">Homeworks</h1>
+                                <div class="font-bold text-navy">44% <i class="fa fa-level-up"></i> <small>In comparison with last week</small></div>
                             </div>
                             <div class="col-md-6">
-                                <h1 class="no-margins">206,120</h1>
+                                <h1 class="no-margins">20</h1>
                                 <div class="font-bold text-navy">22% <i class="fa fa-level-up"></i> <small>Slow pace</small></div>
                             </div>
                         </div>
@@ -72,22 +72,126 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-4">
+        </div>
+        <div class="row">
+            <div class="col-lg-8">
                 <div class="ibox float-e-margins">
-                    <div class="ibox-title">
-                        <h5>Monthly income</h5>
-                        <div class="ibox-tools">
-                            <span class="label label-primary">Updated 12.2015</span>
+                    <div class="ibox-content">
+                        <div>
+                                        <span class="pull-right text-right">
+                                        <small>Average value of visits in the past month in: <strong>United states</strong></small>
+                                            <br>
+                                            All visits: 2,862
+                                        </span>
+                            <h3 class="font-bold no-margins">
+                                Half-year messages sent
+                            </h3>
+                            <small>total conversations</small>
                         </div>
-                    </div>
-                    <div class="ibox-content no-padding">
-                        <div class="flot-chart m-t-lg" style="height: 55px;">
-                            <div class="flot-chart-content" id="flot-chart1" style="padding: 0px; position: relative;"><canvas class="flot-base" width="630" height="110" style="direction: ltr; position: absolute; left: 0px; top: 0px; width: 315px; height: 55px;"></canvas><canvas class="flot-overlay" width="630" height="110" style="direction: ltr; position: absolute; left: 0px; top: 0px; width: 315px; height: 55px;"></canvas></div>
-                        </div>
-                    </div>
 
+                        <div class="m-t-sm">
+
+                            <div class="row">
+                                <div class="col-md-8">
+                                    <div>
+                                        <canvas id="lineChart" height="306" width="808" style="width: 404px; height: 153px;"></canvas>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <ul class="stat-list m-t-lg">
+                                        <li>
+                                            <h2 class="no-margins">346</h2>
+                                            <small>Total homeworks done in period</small>
+                                            <div class="progress progress-mini">
+                                                <div class="progress-bar" style="width: 48%;"></div>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <h2 class="no-margins ">422</h2>
+                                            <small>Homeworks done in last month</small>
+                                            <div class="progress progress-mini">
+                                                <div class="progress-bar" style="width: 60%;"></div>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="m-t-md">
+                            <small class="pull-right">
+                                <i class="fa fa-clock-o"> </i>
+                                Update on 16.07.2015
+                            </small>
+                            <small>
+                                <strong>Analysis of activities:</strong> The Students and Parents are satisfied with our services
+                            </small>
+                        </div>
+
+                    </div>
                 </div>
             </div>
+            <div class="col-lg-4">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-title">
+                        <span class="label label-warning pull-right">Data has changed</span>
+                        <h5>User activity</h5>
+                    </div>
+                    <div class="ibox-content">
+                        <div class="row">
+                            <div class="col-xs-4">
+                                <small class="stats-label">Pages / Visit</small>
+                                <h4> 321</h4>
+                            </div>
+
+                            <div class="col-xs-4">
+                                <small class="stats-label">% New Visits</small>
+                                <h4>46.11%</h4>
+                            </div>
+                            <div class="col-xs-4">
+                                <small class="stats-label">Last week</small>
+                                <h4>432.021</h4>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="ibox-content">
+                        <div class="row">
+                            <div class="col-xs-4">
+                                <small class="stats-label">Pages / Visit</small>
+                                <h4>643 321.10</h4>
+                            </div>
+
+                            <div class="col-xs-4">
+                                <small class="stats-label">% New Visits</small>
+                                <h4>92.43%</h4>
+                            </div>
+                            <div class="col-xs-4">
+                                <small class="stats-label">Last week</small>
+                                <h4>564.554</h4>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="ibox-content">
+                        <div class="row">
+                            <div class="col-xs-4">
+                                <small class="stats-label">Pages / Visit</small>
+                                <h4>436 547.20</h4>
+                            </div>
+
+                            <div class="col-xs-4">
+                                <small class="stats-label">% New Visits</small>
+                                <h4>150.23%</h4>
+                            </div>
+                            <div class="col-xs-4">
+                                <small class="stats-label">Last week</small>
+                                <h4>124.990</h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         </div>
     </div>
 
@@ -498,29 +602,29 @@
     {% if user.is_TA %}
      <div class="wrapper wrapper-content">
         <div class="row">
-            <div class="col-md-2">
+            <div class="col-md-4">
                 <div class="ibox float-e-margins">
                     <div class="ibox-title">
-                        <span class="label label-success pull-right">Monthly</span>
-                        <h5>Views</h5>
+                        <span class="label label-success pull-right">TA</span>
+                        <h5>Identity </h5>
                     </div>
                     <div class="ibox-content">
-                        <h1 class="no-margins">386,200</h1>
-                        <div class="stat-percent font-bold text-success">98% <i class="fa fa-bolt"></i></div>
-                        <small>Total views</small>
+                        <h1 class="no-margins">{{ user.username }}</h1>
+                        <div class="stat-percent font-bold text-success">10% <i class="fa fa-bolt"></i></div>
+                        <small>Top</small>
                     </div>
                 </div>
             </div>
-            <div class="col-md-2">
+            <div class="col-md-4">
                 <div class="ibox float-e-margins">
                     <div class="ibox-title">
-                        <span class="label label-info pull-right">Annual</span>
-                        <h5>Orders</h5>
+                        <span class="label label-info pull-right">Monthly</span>
+                        <h5>TODOs</h5>
                     </div>
                     <div class="ibox-content">
-                        <h1 class="no-margins">80,800</h1>
+                        <h1 class="no-margins">20</h1>
                         <div class="stat-percent font-bold text-info">20% <i class="fa fa-level-up"></i></div>
-                        <small>New orders</small>
+                        <small>New TODOs</small>
                     </div>
                 </div>
             </div>
@@ -535,33 +639,17 @@
 
                         <div class="row">
                             <div class="col-md-6">
-                                <h1 class="no-margins">$ 406,420</h1>
-                                <div class="font-bold text-navy">44% <i class="fa fa-level-up"></i> <small>Rapid pace</small></div>
+                                <h1 class="no-margins">Homeworks to Grade</h1>
+                                <div class="font-bold text-navy">44% <i class="fa fa-level-up"></i> <small>In comparison with last week</small></div>
                             </div>
                             <div class="col-md-6">
-                                <h1 class="no-margins">206,120</h1>
+                                <h1 class="no-margins">20</h1>
                                 <div class="font-bold text-navy">22% <i class="fa fa-level-up"></i> <small>Slow pace</small></div>
                             </div>
                         </div>
 
 
                     </div>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="ibox float-e-margins">
-                    <div class="ibox-title">
-                        <h5>Monthly income</h5>
-                        <div class="ibox-tools">
-                            <span class="label label-primary">Updated 12.2015</span>
-                        </div>
-                    </div>
-                    <div class="ibox-content no-padding">
-                        <div class="flot-chart m-t-lg" style="height: 55px;">
-                            <div class="flot-chart-content" id="flot-chart1" style="padding: 0px; position: relative;"><canvas class="flot-base" width="632" height="110" style="direction: ltr; position: absolute; left: 0px; top: 0px; width: 316px; height: 55px;"></canvas><canvas class="flot-overlay" width="632" height="110" style="direction: ltr; position: absolute; left: 0px; top: 0px; width: 316px; height: 55px;"></canvas></div>
-                        </div>
-                    </div>
-
                 </div>
             </div>
         </div>
@@ -571,14 +659,14 @@
                     <div class="ibox-content">
                         <div>
                                         <span class="pull-right text-right">
-                                        <small>Average value of sales in the past month in: <strong>United states</strong></small>
+                                        <small>Average value of visits in the past month in: <strong>United states</strong></small>
                                             <br>
-                                            All sales: 162,862
+                                            All visits: 2,862
                                         </span>
                             <h3 class="font-bold no-margins">
-                                Half-year revenue margin
+                                Half-year messages sent
                             </h3>
-                            <small>Sales marketing.</small>
+                            <small>total conversations</small>
                         </div>
 
                         <div class="m-t-sm">
@@ -592,15 +680,15 @@
                                 <div class="col-md-4">
                                     <ul class="stat-list m-t-lg">
                                         <li>
-                                            <h2 class="no-margins">2,346</h2>
-                                            <small>Total orders in period</small>
+                                            <h2 class="no-margins">346</h2>
+                                            <small>Total homeworks done in period</small>
                                             <div class="progress progress-mini">
                                                 <div class="progress-bar" style="width: 48%;"></div>
                                             </div>
                                         </li>
                                         <li>
-                                            <h2 class="no-margins ">4,422</h2>
-                                            <small>Orders in last month</small>
+                                            <h2 class="no-margins ">422</h2>
+                                            <small>Homeworks done in last month</small>
                                             <div class="progress progress-mini">
                                                 <div class="progress-bar" style="width: 60%;"></div>
                                             </div>
@@ -617,7 +705,7 @@
                                 Update on 16.07.2015
                             </small>
                             <small>
-                                <strong>Analysis of sales:</strong> The value has been changed over time, and last month reached a level over $50,000.
+                                <strong>Analysis of activities:</strong> The Students and Parents are satisfied with our services
                             </small>
                         </div>
 
@@ -634,7 +722,7 @@
                         <div class="row">
                             <div class="col-xs-4">
                                 <small class="stats-label">Pages / Visit</small>
-                                <h4>236 321.80</h4>
+                                <h4> 321</h4>
                             </div>
 
                             <div class="col-xs-4">
@@ -686,7 +774,7 @@
 
         </div>
 
-        <div class="row">
+        <!--<div class="row">
 
         <div class="col-lg-12">
         <div class="ibox float-e-margins">
@@ -903,7 +991,7 @@
         </div>
         </div>
 
-        </div>
+        </div>-->
 
 
         </div>
@@ -912,29 +1000,29 @@
     {% if user.is_parents %}
      <div class="wrapper wrapper-content">
         <div class="row">
-            <div class="col-md-2">
+            <div class="col-md-4">
                 <div class="ibox float-e-margins">
                     <div class="ibox-title">
-                        <span class="label label-success pull-right">Monthly</span>
-                        <h5>Views</h5>
+                        <span class="label label-success pull-right">Parent</span>
+                        <h5>Identity </h5>
                     </div>
                     <div class="ibox-content">
-                        <h1 class="no-margins">386,200</h1>
-                        <div class="stat-percent font-bold text-success">98% <i class="fa fa-bolt"></i></div>
-                        <small>Total views</small>
+                        <h1 class="no-margins">{{ user.username }}</h1>
+                        <div class="stat-percent font-bold text-success">10% <i class="fa fa-bolt"></i></div>
+                        <small>Top</small>
                     </div>
                 </div>
             </div>
-            <div class="col-md-2">
+            <div class="col-md-4">
                 <div class="ibox float-e-margins">
                     <div class="ibox-title">
-                        <span class="label label-info pull-right">Annual</span>
-                        <h5>Orders</h5>
+                        <span class="label label-info pull-right">Monthly</span>
+                        <h5>TODOs</h5>
                     </div>
                     <div class="ibox-content">
-                        <h1 class="no-margins">80,800</h1>
+                        <h1 class="no-margins">20</h1>
                         <div class="stat-percent font-bold text-info">20% <i class="fa fa-level-up"></i></div>
-                        <small>New orders</small>
+                        <small>New TODOs</small>
                     </div>
                 </div>
             </div>
@@ -949,33 +1037,17 @@
 
                         <div class="row">
                             <div class="col-md-6">
-                                <h1 class="no-margins">$ 406,420</h1>
-                                <div class="font-bold text-navy">44% <i class="fa fa-level-up"></i> <small>Rapid pace</small></div>
+                                <h1 class="no-margins">Reviews</h1>
+                                <div class="font-bold text-navy">44% <i class="fa fa-level-up"></i> <small>In comparison with last week</small></div>
                             </div>
                             <div class="col-md-6">
-                                <h1 class="no-margins">206,120</h1>
+                                <h1 class="no-margins">20</h1>
                                 <div class="font-bold text-navy">22% <i class="fa fa-level-up"></i> <small>Slow pace</small></div>
                             </div>
                         </div>
 
 
                     </div>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="ibox float-e-margins">
-                    <div class="ibox-title">
-                        <h5>Monthly income</h5>
-                        <div class="ibox-tools">
-                            <span class="label label-primary">Updated 12.2015</span>
-                        </div>
-                    </div>
-                    <div class="ibox-content no-padding">
-                        <div class="flot-chart m-t-lg" style="height: 55px;">
-                            <div class="flot-chart-content" id="flot-chart1" style="padding: 0px; position: relative;"><canvas class="flot-base" width="632" height="110" style="direction: ltr; position: absolute; left: 0px; top: 0px; width: 316px; height: 55px;"></canvas><canvas class="flot-overlay" width="632" height="110" style="direction: ltr; position: absolute; left: 0px; top: 0px; width: 316px; height: 55px;"></canvas></div>
-                        </div>
-                    </div>
-
                 </div>
             </div>
         </div>
@@ -985,14 +1057,14 @@
                     <div class="ibox-content">
                         <div>
                                         <span class="pull-right text-right">
-                                        <small>Average value of sales in the past month in: <strong>United states</strong></small>
+                                        <small>Average value of visits in the past month in: <strong>United states</strong></small>
                                             <br>
-                                            All sales: 162,862
+                                            All visits: 2,862
                                         </span>
                             <h3 class="font-bold no-margins">
-                                Half-year revenue margin
+                                Half-year messages sent
                             </h3>
-                            <small>Sales marketing.</small>
+                            <small>total conversations</small>
                         </div>
 
                         <div class="m-t-sm">
@@ -1006,15 +1078,15 @@
                                 <div class="col-md-4">
                                     <ul class="stat-list m-t-lg">
                                         <li>
-                                            <h2 class="no-margins">2,346</h2>
-                                            <small>Total orders in period</small>
+                                            <h2 class="no-margins">346</h2>
+                                            <small>Total homeworks done in period</small>
                                             <div class="progress progress-mini">
                                                 <div class="progress-bar" style="width: 48%;"></div>
                                             </div>
                                         </li>
                                         <li>
-                                            <h2 class="no-margins ">4,422</h2>
-                                            <small>Orders in last month</small>
+                                            <h2 class="no-margins ">422</h2>
+                                            <small>Homeworks done in last month</small>
                                             <div class="progress progress-mini">
                                                 <div class="progress-bar" style="width: 60%;"></div>
                                             </div>
@@ -1031,7 +1103,7 @@
                                 Update on 16.07.2015
                             </small>
                             <small>
-                                <strong>Analysis of sales:</strong> The value has been changed over time, and last month reached a level over $50,000.
+                                <strong>Analysis of activities:</strong> The Students and Parents are satisfied with our services
                             </small>
                         </div>
 
@@ -1048,7 +1120,7 @@
                         <div class="row">
                             <div class="col-xs-4">
                                 <small class="stats-label">Pages / Visit</small>
-                                <h4>236 321.80</h4>
+                                <h4> 321</h4>
                             </div>
 
                             <div class="col-xs-4">
@@ -1100,7 +1172,7 @@
 
         </div>
 
-        <div class="row">
+        <!--<div class="row">
 
         <div class="col-lg-12">
         <div class="ibox float-e-margins">
@@ -1317,7 +1389,7 @@
         </div>
         </div>
 
-        </div>
+        </div>-->
 
 
         </div>
