@@ -53,13 +53,15 @@ def ProfileView(request):
 
 def ChangeInfoView(request):
     if request.user.is_authenticated() and request.method == 'POST':
-        form = ChangeInfoFrom(data=request.POST)     # create form object
-        if form.is_valid():
-            form.save()
-            return HttpResponseRedirect('/account/profile/')
-        else:
-            form = ChangeInfoFrom()
-            return HttpResponseRedirect('/account/profile/')
+        request.user.whatsup = request.POST['whatsup']
+        request.user.save()
+        #form = ChangeInfoFrom(request.POST)     # create form object
+        #if form.is_valid():
+        #    form.save()
+        return HttpResponseRedirect('/account/profile/')
+        #else:
+         #   form = ChangeInfoFrom()
+         #   return HttpResponseRedirect('/account/profile/')
 
 
 #def ChangePassView(request):

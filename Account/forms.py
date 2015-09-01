@@ -2,7 +2,7 @@
 from django import forms
 from .models import Account  # fill in custom user info then save it
 from django.contrib.auth.forms import UserCreationForm
-
+from django.db import models
 
 class MyRegistrationForm(UserCreationForm):
     email = forms.EmailField(required=True)
@@ -22,7 +22,7 @@ class MyRegistrationForm(UserCreationForm):
 
         return user
 
-class ChangeInfoFrom(forms.Form):
+class ChangeInfoFrom(forms.ModelForm):
     #CHOICES = [('男', '1'),
     #           ('女', '0')]
     #sexRadios = forms.ChoiceField(choices=CHOICES, widget=forms.RadioSelect())
@@ -32,7 +32,7 @@ class ChangeInfoFrom(forms.Form):
 
     class Meta:
         model = Account
-        fields = ('username', 'school', 'whatsup')
+        fields = ['username', 'school', 'whatsup']
 
     def save(self, commit=True):
         user = super(ChangeInfoFrom, self).save(commit=False)
