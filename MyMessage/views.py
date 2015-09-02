@@ -72,7 +72,10 @@ def send_message_view(request):
             new_message.receiver = request.POST['receiver']
             new_message.sender = request.POST['sender']
             new_message.content = request.POST['content']
-            new_message.addfile = request.POST['File']
+            try:
+                new_message.addfile = request.POST['File']
+            except:
+                pass
             #new_message.addfile.read()
             new_message.save()
             # add the new message to conversation
@@ -80,10 +83,13 @@ def send_message_view(request):
 
             if new_conversation.type == 1 or new_conversation.type == 2 or new_conversation.type == 3:
                 Account.objects.get(username=new_message.receiver).notification.new_message_from_agent += 1
+                Account.objects.get(username=new_message.receiver).save()
             elif new_conversation.type == 4 or new_conversation.type == 5:
                 Account.objects.get(username=new_message.receiver).notification.new_message_from_student += 1
+                Account.objects.get(username=new_message.receiver)
             elif new_conversation.type == 6:
                 Account.objects.get(username=new_message.receiver).notification.new_message_from_TA += 1
+                Account.objects.get(username=new_message.receiver)
             # to_be_notified_user = Account.objects.filter(Q(username=new_message.receiver))[0]
             # return to /****/****/(conversation_id)/
             return HttpResponseRedirect(request.POST['redirect_url'])
@@ -96,7 +102,10 @@ def send_message_view(request):
             new_message.receiver = request.POST['receiver']
             new_message.sender = request.POST['sender']
             new_message.content = request.POST['content']
-            new_message.addfile = request.POST['File']
+            try:
+                new_message.addfile = request.POST['File']
+            except:
+                pass
             #new_message.addfile.read()
             # save the message to DB
             new_message.save()
@@ -106,10 +115,13 @@ def send_message_view(request):
             con_type = conversation.type
             if con_type == 1 or con_type == 2 or con_type == 3:
                 Account.objects.get(username=new_message.receiver).notification.new_message_from_agent += 1
+                Account.objects.get(username=new_message.receiver)
             if con_type == 3 or con_type == 4:
                 Account.objects.get(username=new_message.receiver).notification.new_message_from_student += 1
+                Account.objects.get(username=new_message.receiver)
             if con_type == 6:
                 Account.objects.get(username=new_message.receiver).notification.new_message_from_TA += 1
+                Account.objects.get(username=new_message.receiver)
             # return to /****/****/(conversation_id)/
             return HttpResponseRedirect(request.POST['redirect_url'])
     else:
