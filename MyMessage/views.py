@@ -49,7 +49,7 @@ def send_message_view(request):
                 reciver = Account.objects.get(username=request.POST['receiver'])
                 starter = Account.objects.get(username=request.POST['sender'])
             except:
-                # todo: Throw out the reciver wrong error
+                # todo: Throw out the receiver wrong error
                 pass
 
             if starter.is_admin and reciver.is_student:
@@ -72,6 +72,8 @@ def send_message_view(request):
             new_message.receiver = request.POST['receiver']
             new_message.sender = request.POST['sender']
             new_message.content = request.POST['content']
+            new_message.addfile = request.POST['File']
+            #new_message.addfile.read()
             new_message.save()
             # add the new message to conversation
             new_conversation.messages.add(new_message)
@@ -94,6 +96,8 @@ def send_message_view(request):
             new_message.receiver = request.POST['receiver']
             new_message.sender = request.POST['sender']
             new_message.content = request.POST['content']
+            new_message.addfile = request.POST['File']
+            #new_message.addfile.read()
             # save the message to DB
             new_message.save()
             # get the conversation by ID, and add the new message to the conversation
