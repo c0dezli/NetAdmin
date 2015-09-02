@@ -55,8 +55,10 @@
                         </div>
 
                     <tr>
+                        {% if message.addfile != "1" %}
                         <td width="60%">{{message.addfile}}</td>
                         <td width="40%" align="center"><a href="/download/{{message.addfile}}" style="text-decoration:None">Download here</a></td>
+                        {% endif %}
                     </tr>
                     </div>
                     {% endfor %}
