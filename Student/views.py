@@ -5,7 +5,7 @@ from MyMessage.models import Message
 
 
 def index_page_view(request):
-    return render(request, 'mailbox.html')
+    return render(request, 'index.html')
 
 def toparents_page_view(request):
     message_list = Message.objects.filter(receiver=request.user.username,)
