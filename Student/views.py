@@ -19,3 +19,4 @@ def toadmin_page_view(request):
 
 def toprof_page_view(request):
     return HttpResponse('toprof')
+

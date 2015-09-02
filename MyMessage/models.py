@@ -8,6 +8,7 @@ class Message(models.Model):
     content = models.TextField()
     send_time = models.DateTimeField(auto_now_add=True)
     unread = models.BooleanField(default=True)
+    addfile = models.FileField()
 
     def __unicode__(self):
         return 'From ' + self.sender

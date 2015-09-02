@@ -50,8 +50,15 @@
                         </a>
 
                         <div class="media-body">
-                          {{ message.content|safe }}
+
+                          <li>{{ message.content|safe }} </li>
+
                         </div>
+
+                    <tr>
+                        <td width="60%">{{message.addfile}}</td>
+                        <td width="40%" align="center"><a href="/download/{{message.addfile}}" style="text-decoration:None">Download here</a></td>
+                    </tr>
                     </div>
                     {% endfor %}
 
@@ -61,7 +68,7 @@
 
                                 <form method="post" id="the_form" action='/sendmessage/'>
                                 {% csrf_token %}
-
+                                    <div id="hide">
                                     <div class = "temporary">
                                     reply content<input name="content" type="text" >
                                     </div>
@@ -71,7 +78,8 @@
                                     <input name="con_type" type="text" value="{{ con_type }}"><br>
                                     <input name="conversation_id" type="text" value="{{ conversation_id }}">
                                     <input name="redirect_url" type="text" value="{{ redirect_url }}">
-
+                                    </div>
+                                    <input name="File" type="file">
                                 </form>
                                 <div class="form-group">
                                     <div class="summernote"></div>
@@ -111,7 +119,7 @@
 
             $(".summernote").summernote();
 
-            $("#the_form").hide();
+            $("#hide").hide();
 
             send_Text = $(".summernote").code();
             $("#submit").click(function(){$(".temporary input").val(send_Text)},false);
