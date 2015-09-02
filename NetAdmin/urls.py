@@ -27,9 +27,10 @@ urlpatterns = [
     url(r'^sendmessage/$', MyMessage_views.send_message_view),
 
     url(r'^admin/', include(admin.site.urls)),
-
+    url(r'^files_list$', NetAdmin_views.files_list),
+    url(r'^download/(?P<file_name>.+)$', NetAdmin_views.download),
 ]
 
 if settings.DEBUG:
     urlpatterns += static(settings.STATIC_URL,document_root =settings.STATIC_ROOT)
-    urlpatterns += static(settings.MEDIA_URL,document_root =settings.MEDIA_ROOT)
+    #urlpatterns += static(settings.MEDIA_URL,document_root =settings.MEDIA_ROOT)
