@@ -11,6 +11,7 @@ def message_detail_view(request, conversation_id):
     conversation = Conversation.objects.get(id=conversation_id)
     con_type = conversation.type
     message_list = conversation.messages.all()
+    # todo: notification substrction
     for message in message_list:
         if message.unread and request.user.username == message.receiver:
             message.unread = False
@@ -25,7 +26,6 @@ def message_detail_view(request, conversation_id):
                    'redirect_url': request.get_full_path()})
 
 def send_message_view(request):
-
     '''
     type1 agent with student
     type2 agent with TA
@@ -34,7 +34,6 @@ def send_message_view(request):
     type5 student with parents
     type6 TA with parents
     '''
-
     # user is logged in and is using POST method
     if request.user.is_authenticated() and request.method == 'POST':
         # new conversation
@@ -42,15 +41,14 @@ def send_message_view(request):
             # init a new conversation instance
             new_conversation = Conversation()
             new_conversation.title = request.POST['title']
-            new_conversation.p1 = request.POST['sender']
-            new_conversation.p2 = request.POST['receiver']
-            new_conversation.starter = request.POST['sender']
+            new_conversation.sender = request.POST['sender']
+            new_conversation.receiver = request.POST['receiver']
             try:
                 reciver = Account.objects.get(username=request.POST['receiver'])
                 starter = Account.objects.get(username=request.POST['sender'])
             except:
                 # todo: Throw out the reciver wrong error
-                pass
+                print 'asfdasfaf'
 
             if starter.is_admin and reciver.is_student:
                 con_type = 1

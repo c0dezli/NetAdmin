@@ -50,7 +50,7 @@
                         </a>
 
                         <div class="media-body">
-                          {{ message.content }}
+                          {{ message.content|safe }}
                         </div>
                     </div>
                     {% endfor %}
