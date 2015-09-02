@@ -33,7 +33,7 @@ Message list
                                     <i class="fa fa-globe text-navy mid-icon"></i>
                                 </div>
                                 <h2>{{ message_category }}</h2>
-                                <a href="/newmessage/" class="pull-right">发起新话题</a>
+                                <a href="/newmessage/" class="btn btn-primary pull-right" >发起新对话</a>
                                 <span>消息会分条列出</span>
                             </div>
                         </div>
@@ -41,9 +41,13 @@ Message list
                         <div class="ibox-content forum-container">
 
                             <div class="forum-title">
+                            <div class="forum-title">
                                 <div class="pull-right forum-desc">
                                 </div>
                             </div>
+                            {% if no_message %}
+                                <div class="text-center"><p>没有新消息</p></div>
+                            {% endif %}
                             {% for message in message_list %}
 
                             <div class="forum-item {% if not message.is_read %}active{% endif %}">
@@ -54,7 +58,7 @@ Message list
                                         </div>
 
                                         <a href="{{ message.id }}/" class="forum-item-title">{{ message.title }}</a>
-                                        <div class="forum-sub-title">{{ message.messages.last.content|truncatechars:20 }}</div>
+                                        <div class="forum-sub-title">{{ message.messages.last.content|truncatechars:20|safe }}</div>
                                     </div>
                                     <div class="col-md-1 forum-info">
                                         <span class="views-number">
@@ -63,6 +67,7 @@ Message list
                                             {% else %}
                                                 read
                                             {% endif %}
+                                        </span>
                                         </span>
                                         <div>
                                             <small>Views</small>

@@ -19,13 +19,13 @@
 {% block content %}
     <div class="row wrapper border-bottom white-bg page-heading">
         <div class="col-sm-4">
-            <h2>Forum - post view</h2>
+            <h2>{{ title }}</h2>
             <ol class="breadcrumb">
                 <li>
-                    <a href="index.html">Home</a>
+                    <a href="/index/">Home</a>
                 </li>
                 <li class="active">
-                    <strong>Forum - post view</strong>
+                    <strong>{{ title }}</strong>
                 </li>
             </ol>
         </div>
@@ -35,13 +35,13 @@
             <div class="wrapper wrapper-content animated fadeInRight">
                 <div class="ibox-content forum-post-container">
                     <div class="forum-post-info">
-                        <h4><span class="text-navy"><i class="fa fa-globe"></i></span> -
-                            老师来信 - <span class="text-muted">{{ message_list.0.title }}</span></h4>
+                        <h4><span class="text-navy"><i class="fa fa-globe"></i></span>
+                         <span class="text-muted">{{ title }}</span> - <b>{{ user.username }}</b> 与 <b>{{ receiver }}</b>  </h4>
                     </div>
                     {% for message in message_list %}
                     <div class="media">
                         <a class="forum-avatar" href="#">
-                            <img src="img/a1.jpg" class="img-circle" alt="image">
+                            <img src="{% get_static_prefix %}img/a1.jpg" class="img-circle" alt="image">
 
                             <div class="author-info">
                                 <strong>{{ message.sender }}</strong><br/>
@@ -50,16 +50,23 @@
                         </a>
 
                         <div class="media-body">
-                          <li>{{ message.content }} </li>
+
+                         {{ message.content|safe }}
 
                         </div>
 
+<<<<<<< HEAD
                     <tr>
                         {% if message.addfile != "1" %}
                         <td width="60%">{{message.addfile}}</td>
                         <td width="40%" align="center"><a href="/download/{{message.addfile}}" style="text-decoration:None">Download here</a></td>
                         {% endif %}
                     </tr>
+=======
+                    <div>
+                         <li><a href="/download/{{message.addfile}}"><i class="fa fa-file-word-o"></i>  {{message.addfile}}</a></li>
+                    </div>
+>>>>>>> bff5f815110f263173a09b4e3124b8e11671b1fd
                     </div>
                     {% endfor %}
 
