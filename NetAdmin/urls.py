@@ -1,6 +1,6 @@
 from django.conf.urls import include, url, patterns
 from django.contrib import admin
-
+from django.conf.urls.static import static
 
 from NetAdmin import views as NetAdmin_views
 from MyMessage import views as MyMessage_views
@@ -31,8 +31,5 @@ urlpatterns = [
 ]
 
 if settings.DEBUG:
-    urlpatterns += patterns('',
-        url(r'^media/(?P<path>.*)$',
-            'django.views.static.serve',
-            {'document_root': settings.MEDIA_ROOT, }),
-    )
+    urlpatterns += static(settings.STATIC_URL,document_root =settings.STATIC_ROOT)
+    urlpatterns += static(settings.MEDIA_URL,document_root =settings.MEDIA_ROOT)
