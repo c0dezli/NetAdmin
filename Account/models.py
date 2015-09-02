@@ -36,11 +36,15 @@ class AccountManager(BaseUserManager):
 
 
 class Notification(models.Model):
-    new_message_from_agent = models.IntegerField(null=True)
-    new_message_from_student = models.IntegerField(null=True)
-    new_message_from_parents = models.IntegerField(null=True)
-    new_message_from_TA = models.IntegerField(null=True)
-    new_essays = models.IntegerField(null=True)
+    for_user = models.CharField(max_length=40)
+    new_message_from_agent = models.IntegerField(default=0)
+    new_message_from_student = models.IntegerField(default=0)
+    new_message_from_parents = models.IntegerField(default=0)
+    new_message_from_TA = models.IntegerField(default=0)
+    new_essays = models.IntegerField(default=0)
+
+    def __unicode__(self):
+        return self.for_user
 
 
 

@@ -65,22 +65,17 @@
                                     <div class = "temporary">
                                     reply content<input name="content" type="text" >
                                     </div>
-                                    <div id="test-form-submit">
 
-                                    sender:<input name="sender" type="text" value="{{ user.username }}">
-                                    receiver:<input name="receiver" type="text" value="{{ receiver }}" id="hide">
-                                    con_type:<input name="con_type" type="text" value="{{ con_type }}" id="hide"><br>
-                                    conversation-id:<input name="conversation_id" type="text" value="{{ conversation_id }}" id="hide">
-                                    redirect-url:<input name="redirect_url" type="text" value="{{ redirect_url }}" id="hide">
+                                    <input name="sender" type="text" value="{{ user.username }}">
+                                    <input name="receiver" type="text" value="{{ receiver }}">
+                                    <input name="con_type" type="text" value="{{ con_type }}"><br>
+                                    <input name="conversation_id" type="text" value="{{ conversation_id }}">
+                                    <input name="redirect_url" type="text" value="{{ redirect_url }}">
 
-
-                                    </div>
                                 </form>
                                 <div class="form-group">
                                     <div class="summernote"></div>
-
                                     <button id="submit" onclick="set_and_send()" class="btn btn-primary pull-right">Send</button>
-
                                 </div>
                             </div>
                         </div>

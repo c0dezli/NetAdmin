@@ -19,13 +19,13 @@
 {% block content %}
     <div class="row wrapper border-bottom white-bg page-heading">
         <div class="col-sm-4">
-            <h2>Forum - post view</h2>
+            <h2>发起新会话</h2>
             <ol class="breadcrumb">
                 <li>
-                    <a href="index.html">Home</a>
+                    <a href="/index/">Home</a>
                 </li>
                 <li class="active">
-                    <strong>Forum - post view</strong>
+                    <strong>New Conversation</strong>
                 </li>
             </ol>
         </div>
@@ -36,40 +36,30 @@
 
             <div class="wrapper wrapper-content animated fadeInRight">
                 <div class="ibox-content forum-post-container">
-                    <form method="post" id="the_form" action='/sendmessage/'>
-                                {% csrf_token %}
-                            <input type="text" name="title" placeholder="标题" class="form-control"><br>
+                    <form method="POST" id="the_form" action='/sendmessage/'>
+                        {% csrf_token %}
+                        <input type="text" name="title" placeholder="标题" class="form-control"><br>
 
-                                    <div id="hide">
-                                    <div class = "temporary">
-                                        reply content<input name="content" type="text" >
-                                    </div>
-                                        <input name="sender" type="text" value="{{ user.username }}">
-                                        <input name="receiver" type="text" value="{{ receiver }}">
-                                        <input name="con_type" type="text" value="{{ con_type }}" ><br>
-                                        <input name="conversation_id" type="text" value="{{ conversation_id }}">
-                                        <input name="redirect_url" type="text" value="{{ redirect_url }}">
-                                    </div>
-                                </form>
+                        <input name="receiver" type="text" placeholder="收件人" class="form-control"><br>
 
-                    <div class="row">
-                        <div class="col-lg-12">
-                            <div class="chat-message-form">
-
-                                <div class="form-group">
-
-                                    <div class="summernote">
-
-                                    </div>
-                                </div>
-
+                        <div id="hide">
+                            <div class="temporary">
+                                <input name="content" type="text">
                             </div>
-                        </div>
+                            <input name="sender" type="text" value="{{ user.username }}">
 
+                            <input name="con_type" type="text" value="{{ con_type }}"><br>
+                            <input name="conversation_id" type="text" value="{{ conversation_id }}">
+                            <input name="redirect_url" type="text" value="{{ redirect_url }}">
+                        </div>
+                    </form>
+
+                    <div class="form-group">
+                        <div class="summernote"></div>
+                        <button id="submit" onclick="set_and_send()" class="btn btn-primary pull-right">Send</button>
                     </div>
                 </div>
             </div>
-
         </div>
     </div>
 
@@ -99,16 +89,19 @@
             $("#hide").hide();
 
             send_Text = $(".summernote").code();
-            $("#submit").click(function(){$(".temporary input").val(send_Text)},false);
+            $("#submit").click(function () {
+                $(".temporary input").val(send_Text)
+            }, false);
 
 
         });
 
         cleanText = $(".summernote").code();
-        function set_and_send(){
+        function set_and_send() {
             $(".temporary input").val($(".summernote").code());
-            $( "#the_form" ).submit();
-        };
+            $("#the_form").submit();
+        }
+        ;
 
     </script>
 

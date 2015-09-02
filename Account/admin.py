@@ -4,7 +4,7 @@ from django.contrib.auth.models import Group
 from django.contrib.auth.admin import UserAdmin
 from django.contrib.auth.forms import ReadOnlyPasswordHashField
 
-from .models import Account,Notification
+from .models import Account, Notification
 
 
 class UserCreationForm(forms.ModelForm):
@@ -29,6 +29,9 @@ class UserCreationForm(forms.ModelForm):
         # Save the provided password in hashed format
         user = super(UserCreationForm, self).save(commit=False)
         user.set_password(self.cleaned_data["password1"])
+        notif = Notification()
+        notif.for_user = user.username
+        user.notification = notif
         if commit:
             user.save()
         return user
@@ -64,7 +67,8 @@ class AccountAdmin(UserAdmin):
     list_filter = ('is_admin',)
     fieldsets = (
         (None, {'fields': ('email', 'password')}),
-        ('Personal Info', {'fields': ('username',)}),
+        ('Personal Info', {'fields': ('username', 'phone', 'school', 'sex', 'whatsup')}),
+        ('Notification', {'fields': ('notification',)}),
         ('User Roles', {'fields': ('is_admin', 'is_TA', 'is_student', 'is_parents')}),
     )
     # add_fieldsets is not a standard ModelAdmin attribute. UserAdmin
@@ -75,7 +79,7 @@ class AccountAdmin(UserAdmin):
             'fields': ('email', 'username', 'password1', 'password2')}
          ),
     )
-    search_fields = ('email',)
+    search_fields = ('email', 'username')
     ordering = ('email',)
     filter_horizontal = ()
 
