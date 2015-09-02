@@ -1,5 +1,6 @@
-from django.conf.urls import include, url
+from django.conf.urls import include, url, patterns
 from django.contrib import admin
+
 
 from NetAdmin import views as NetAdmin_views
 from MyMessage import views as MyMessage_views
@@ -9,6 +10,7 @@ from Student import urls as student_urls
 from Account import urls as account_urls
 from Parents import urls as parents_urls
 from Agent import urls as admin_urls
+import settings
 
 urlpatterns = [
     url(r'^$', NetAdmin_views.landing_page_view),
@@ -25,4 +27,12 @@ urlpatterns = [
     url(r'^sendmessage/$', MyMessage_views.send_message_view),
 
     url(r'^admin/', include(admin.site.urls)),
+
 ]
+
+if settings.DEBUG:
+    urlpatterns += patterns('',
+        url(r'^media/(?P<path>.*)$',
+            'django.views.static.serve',
+            {'document_root': settings.MEDIA_ROOT, }),
+    )

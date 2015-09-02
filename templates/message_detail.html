@@ -50,8 +50,10 @@
                         </a>
 
                         <div class="media-body">
-                          {{ message.content }}
+                          <li>{{ message.content }} </li>
+
                         </div>
+                        <a href="{{ MEDIA_URL  }}{{ message.addfile.url }}">download</a>
                     </div>
                     {% endfor %}
 
