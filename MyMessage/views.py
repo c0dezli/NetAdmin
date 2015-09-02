@@ -23,7 +23,8 @@ def message_detail_view(request, conversation_id):
                    'receiver': conversation.receiver,
                    'conversation_id': conversation_id,
                    'con_type': con_type,
-                   'redirect_url': request.get_full_path()})
+                   'redirect_url': request.get_full_path(),
+                   'title': conversation.title})
 
 def send_message_view(request):
     '''
@@ -123,12 +124,15 @@ def message_list_view(request, con_type):
     type5 student with parents
     type6 TA with parents
     '''
-    print con_type
 
-    message_list = Conversation.objects.filter(Q(type=con_type) & (Q(sender=request.user.username)
-                                                   | Q(receiver=request.user.username))).order_by('newest_reply_time')
+    message_list = Conversation.objects.filter(Q(type=con_type) & (Q(sender=request.user.username) | Q(receiver=request.user.username))).order_by('newest_reply_time')
 
     page = int(message_list.count()/10)
+
+    if not message_list:
+        no_message = True
+    else:
+        no_message = False
 
     if (con_type == 1 or con_type == 2 or con_type == 3) and (not request.user.is_admin):
         print request.user.is_admin
@@ -143,7 +147,8 @@ def message_list_view(request, con_type):
     return render(request, 'message_list.html',
                   {'message_category': message_category,
                    'message_list': message_list,
-                   'page': page})
+                   'page': page,
+                   'no_message': no_message})
 
 def compose_message_view(request):
     if request.user.is_authenticated():
